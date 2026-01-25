@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Book Seat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Special styles for the login layout */
+        .login-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80vh;
+            padding: 20px;
+        }
+
+        .login-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(15px);
+            padding: 40px;
+            border-radius: 25px;
+            border: 1px solid rgba(163, 137, 212, 0.2);
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .login-card h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #a389d4;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            background: #1e1b29;
+            border: 1px solid #444;
+            border-radius: 10px;
+            color: white;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #a389d4;
+        }
+
+        .login-submit {
+            width: 100%;
+            padding: 15px;
+            background: #a389d4;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .login-submit:hover {
+            background: #b6a0e0;
+            transform: translateY(-2px);
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: #b5b5b5;
+        }
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #b5b5b5; /* Dimmed color */
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: white; /* Brightens on hover */
+        }
+
+        .signup-link a {
+            color: #a389d4;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span class="icon">🎟️</span> TRAIVEX
+                </a>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="login-wrapper">
+        <div class="login-card">
+            <h2>User <span class="accent-text">Login</span></h2>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="loginEmail" placeholder="Enter your email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="loginPass" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="login-submit">Sign In</button>
+            </form>
+
+            <div class="signup-link">
+                Don't have an account? <a href="signup.html">Create one</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPass').value;
+
+            try {
+                // When deployed to Vercel, this calls the logic in /api/index.js
+                const response = await fetch('/api/login', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert("Welcome back!");
+                    window.location.href = "index.html";
+                } else {
+                    alert("Error: " + result.message);
+                }
+            } catch (err) {
+                alert("Could not connect to server. Check your backend!");
+            }
+        });
+    </script>
+</body>
+</html>

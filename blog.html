@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - TRAIVEX</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+       
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #0f0c15; color: white; }
+        
+               
+        header { 
+            background: #1e1b29; 
+            width: 100%;
+        }
+        
+        .navbar { 
+            display: flex; 
+            align-items: center; 
+            width: 100%; 
+            max-width: 100%; 
+            
+        }
+        
+        .logo { 
+            font-size: 1.5rem; 
+            font-weight: bold; 
+            color: #fff; 
+            display: flex; 
+            align-items: center; 
+            gap: 10px;
+            margin-right: 20px; 
+        }
+        
+        .nav-links { 
+            list-style: none; 
+            display: flex; 
+            gap: 30px; 
+            
+            
+            margin-left: auto;   
+            margin-right: 40px;  
+        }
+        
+        .nav-links a { 
+            text-decoration: none; 
+            color: #b5b5b5; 
+            font-weight: 500; 
+            transition: 0.3s; 
+        }
+        
+        .nav-links a:hover { 
+            color: #a389d4; 
+        }
+        
+        
+        .more-btn { 
+            background-color: #a389d4;
+            border: none;
+            border-radius: 12px;
+            padding: 10px 28px;
+            cursor: pointer;
+            text-decoration: none;
+            color: #ffffff;
+            font-weight: 600;
+            white-space: nowrap;
+        }
+               
+        .blog-container {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 40px;
+            padding: 60px 10%;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        
+        .blog-post {
+            background: #1e1b29;
+            border-radius: 20px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            border: 1px solid rgba(163, 137, 212, 0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .blog-post .blog-img {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            background: #2a263a;
+        }
+        
+        .blog-post .blog-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+        
+       
+        .blog-post:hover .blog-img img { transform: scale(1.05); }
+
+        .blog-content { padding: 30px; background: #1e1b29; z-index: 2; }
+        .blog-meta { color: #a389d4; font-size: 0.8rem; margin-bottom: 10px; font-weight: 600; letter-spacing: 1px; }
+        h2 { margin-bottom: 15px; font-size: 1.8rem; }
+        p { color: #d1d1d1; line-height: 1.6; margin-bottom: 20px; }
+
+        .read-more-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-bottom: 2px solid #a389d4;
+            padding-bottom: 2px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        .read-more-btn:hover { color: #a389d4; }
+
+        
+        .sidebar-box {
+            background: rgba(163, 137, 212, 0.05);
+            padding: 30px;
+            border-radius: 20px;
+            height: fit-content;
+            position: sticky;
+            top: 20px;
+            border: 1px solid rgba(163, 137, 212, 0.1);
+        }
+
+        .sidebar-box h3 {
+            margin-bottom: 20px;
+            border-left: 4px solid #a389d4;
+            padding-left: 15px;
+        }
+
+        
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(5px);
+            display: none; 
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #1e1b29;
+            width: 90%;
+            max-width: 700px;
+            max-height: 80vh;
+            padding: 40px;
+            border-radius: 25px;
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid #a389d4;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px; right: 25px;
+            font-size: 2rem;
+            color: #a389d4;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .close-modal:hover { color: white; transform: rotate(90deg); }
+
+        @media (max-width: 900px) {
+            .blog-container { grid-template-columns: 1fr; }
+            .navbar { flex-direction: column; gap: 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo"><span class="icon">🎟️</span> TRAIVEX </div>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="blog.html" style="color: white; border-bottom: 2px solid #a389d4;">BLOGS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="blog-container">
+        <main>
+            <article class="blog-post">
+                <div class="blog-img"><img src="img1.jpg" alt="Winter Village"></div>
+                <div class="blog-content">
+                    <div class="blog-meta">Travel • Dec 27, 2025</div>
+                    <h2>10 Hidden Gems to Visit This Winter</h2>
+                    <p>Discover the most underrated travel destinations that offer breathtaking views...</p>
+                    <button class="read-more-btn" onclick="openWinterPost()">Read Full Article</button>
+                </div>
+            </article>
+
+            <article class="blog-post">
+                <div class="blog-img"><img src="img2-FX577ZC4.png" alt="Safety Travel"></div>
+                <div class="blog-content">
+                    <div class="blog-meta">Safety • Dec 20, 2025</div>
+                    <h2>Safety on Every Journey</h2>
+                    <p>Learn about our essential tips to ensure your journey is secure and worry-free...</p>
+                    <button class="read-more-btn" onclick="openSafetyPost()">Read Full Article</button>
+                </div>
+            </article>
+        </main>
+
+        <aside>
+            <div class="sidebar-box">
+                <h3>Categories</h3>
+                <p style="color: #b5b5b5; font-size: 0.9rem; line-height: 2;">
+                    ✈️ Travel Tips<br>
+                    🛡️ Safety News<br>
+                    📢 Company Updates
+                </p>
+            </div>
+        </aside>
+    </div>
+
+    <div class="modal-overlay" id="articleModal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeArticle()">&times;</span>
+            <h2 id="modalTitle" style="color:#a389d4; margin-bottom: 20px;"></h2>
+            <p id="modalBody" style="line-height: 1.8; color: #d1d1d1;"></p>
+        </div>
+    </div>
+
+    <script>
+       
+        function openWinterPost() {
+            const title = "10 Hidden Gems to Visit This Winter";
+           
+            const content = `
+            Discover the most underrated destinations that offer unique cultural experiences and unparalleled tranquility, away from the typical tourist crowds.
+            <br><br>
+            <strong>1. Abisko, Sweden:</strong> The world’s most reliable front-row seat for the Northern Lights.<br>
+            <strong>2. Hallstatt, Austria:</strong> A quiet, snow-dusted alpine village straight out of a storybook.<br>
+            <strong>3. Shirakawa-go, Japan:</strong> Iconic triangular farmhouses glowing under heavy mountain snow.<br>
+            <strong>4. Lake Bled, Slovenia:</strong> An emerald lake with a tiny island church, framed by frozen peaks.<br>
+            <strong>5. Røros, Norway:</strong> A colorful, 17th-century wooden mining town that feels frozen in time.<br>
+            <br>
+            Whether you choose the icy wonders of the North or the cozy villages of Central Europe, these gems promise a winter you will never forget.
+            `;
+            openArticle(title, content);
+        }
+
+       
+        function openSafetyPost() {
+            const title = "Safety on Every Journey: Your Essential Guide";
+            //
+            const content = `Travel opens up a world of discovery, from breathtaking landscapes to vibrant cultures. But whether you're embarking on a solo adventure, a family vacation, or a business trip, one thing remains paramount: your safety. 
+            <br><br>
+            A little preparation goes a long way in ensuring your journey is not just exciting, but also secure and worry-free. 
+            <br><br>
+            <strong>1. Plan Ahead:</strong> Research local customs and scams before you fly.<br>
+            <strong>2. Share Your Itinerary:</strong> Always let a friend or family member know where you are.<br>
+            <strong>3. Safeguard Valuables:</strong> Keep passports and wallets in secure, zippered pockets.<br>
+            <br>
+            By incorporating these simple safety measures into your travel routine, you can significantly enhance your experience. Safe travels!`;
+
+            openArticle(title, content);
+        }
+
+      
+        function openArticle(title, content) {
+            document.getElementById('modalTitle').innerText = title;
+            document.getElementById('modalBody').innerHTML = content;
+            document.getElementById('articleModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeArticle() {
+            document.getElementById('articleModal').style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+
+       
+        window.onclick = function(event) {
+            let modal = document.getElementById('articleModal');
+            if (event.target == modal) {
+                closeArticle();
+            }
+        }
+    </script>
+</body>
+</html>

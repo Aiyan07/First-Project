@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - Book Seat</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .reviews-container {
+            padding: 60px 10%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .reviews-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .review-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(163, 137, 212, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        /* Interactive Review Form Overlay */
+        .review-modal {
+            position: fixed;
+            top: 0; right: -100%; /* Hidden off-screen */
+            width: 400px;
+            height: 100%;
+            background: #1e1b29;
+            box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+            z-index: 1000;
+            transition: 0.4s ease;
+            padding: 40px;
+            border-left: 2px solid #a389d4;
+        }
+
+        .review-modal.active {
+            right: 0;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: none;
+            z-index: 999;
+        }
+
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; color: #a389d4; margin-bottom: 8px; font-size: 0.8rem; }
+        
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            background: #12101a;
+            border: 1px solid #444;
+            padding: 12px;
+            color: white;
+            border-radius: 8px;
+        }
+
+        .submit-review-btn {
+            width: 100%;
+            padding: 15px;
+            background: #a389d4;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .write-review-trigger {
+            display: block;
+            margin: 40px auto;
+            padding: 15px 40px;
+            background: #a389d4;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .write-review-trigger:hover {
+            transform: scale(1.05);
+            background: #b6a0e0;
+        }
+
+        .close-btn {
+            color: #a389d4;
+            font-size: 1.5rem;
+            cursor: pointer;
+            float: right;
+        }
+
+        
+
+        
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo"><span class="icon">🎟️</span> TRAIVEX</div>
+            <ul class="nav-links">
+                <li><a href="index.html">HOME</a></li>
+                <li><a href="about.html">ABOUT</a></li>
+                <li><a href="blog.html">BLOGS</a></li>
+                <li><a href="reviews.html" style="color: white;">REVIEWS</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="reviews-container">
+        <div class="reviews-header">
+            <h1>Traveler <span class="accent-text">Experiences</span></h1>
+            <button class="write-review-trigger" onclick="toggleReviewForm()">+ Write A Review</button>
+        </div>
+
+        <div class="reviews-grid" id="reviewsGrid">
+            <div class="review-card">
+                <div style="color: #ffb400; margin-bottom: 10px;">★★★★★</div>
+                <p style="font-style: italic; color: #d1d1d1; margin-bottom: 15px;">I used TRAIVEX for my winter trip and the experience was flawless. The dark mode design is so easy on the eyes, and booking my train tickets took less than 2 minutes. I also loved the blog section—the article on 'Hidden Gems' actually helped me pick my destination! Highly recommended for anyone tired of clunky booking sites."</p>
+                <div style="font-weight: bold;">- Aayan Ali</div>
+            </div>
+            <div class="review-card">
+                <div style="color: #ffb400; margin-bottom: 10px;">★★★★★</div>
+                <p style="font-style: italic; color: #d1d1d1; margin-bottom: 15px;">I was hesitant to try a new booking platform, but TRAIVEX exceeded my expectations. Their focus on safety and transparency is clear from the start. Customer support was available 24/7 when I had a question about my route. It feels good to book with a company that actually cares about the journey, not just the ticket.</p>
+                <div style="font-weight: bold;">- Mahargya Sarkar</div>
+            </div>
+            <div class="review-card">
+                <div style="color: #ffb400; margin-bottom: 10px;">★★★★★</div>
+                <p style="font-style: italic; color: #d1d1d1; margin-bottom: 15px;">"Amazing service, the train was on time and very clean!"</p>
+                <div style="font-weight: bold;">- Aditya Prasad</div>
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="overlay" onclick="toggleReviewForm()"></div>
+    <div class="review-modal" id="reviewModal">
+        <span class="close-btn" onclick="toggleReviewForm()">&times;</span>
+        <h2 style="margin-bottom: 30px;">Share Your Trip</h2>
+        
+        <form id="reviewForm">
+            <div class="form-group">
+                <label>Your Name</label>
+                <input type="text" id="userName" required placeholder="Enter name">
+            </div>
+            <div class="form-group">
+                <label>Rating</label>
+                <select id="userRating">
+                    <option value="★★★★★">5 Stars</option>
+                    <option value="★★★★☆">4 Stars</option>
+                    <option value="★★★☆☆">3 Stars</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Your Review</label>
+                <textarea id="userText" rows="5" required placeholder="How was your journey?"></textarea>
+            </div>
+            <button type="submit" class="submit-review-btn">Post Review</button>
+        </form>
+    </div>
+
+    <script>
+        function toggleReviewForm() {
+            document.getElementById('reviewModal').classList.toggle('active');
+            let overlay = document.getElementById('overlay');
+            overlay.style.display = overlay.style.display === 'block' ? 'none' : 'block';
+        }
+
+        document.getElementById('reviewForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get values
+            const name = document.getElementById('userName').value;
+            const rating = document.getElementById('userRating').value;
+            const text = document.getElementById('userText').value;
+
+            // Create new review card
+            const newReview = document.createElement('div');
+            newReview.className = 'review-card';
+            newReview.innerHTML = `
+                <div style="color: #ffb400; margin-bottom: 10px;">${rating}</div>
+                <p style="font-style: italic; color: #d1d1d1; margin-bottom: 15px;">"${text}"</p>
+                <div style="font-weight: bold;">- ${name}</div>
+            `;
+
+            // Add to grid and close form
+            document.getElementById('reviewsGrid').prepend(newReview);
+            toggleReviewForm();
+            this.reset();
+        });
+    </script>
+</body>
+</html>

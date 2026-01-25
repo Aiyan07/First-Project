@@ -1,0 +1,155 @@
+/* General Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: #12101a; 
+    color: white;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 80px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.logo {
+    font-weight: bold;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #b5b5b5;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: white;
+}
+
+.more-btn {
+    background-color: #a389d4;
+    border: none;
+    padding: 8px 25px;
+    border-radius: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+/* Hero Section */
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 60px 80px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.hero-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.hero-logo-small {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 30px;
+    opacity: 0.7;
+}
+
+.number {
+    font-size: 3rem;
+    font-weight: 300;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.accent-text {
+    color: #a389d4; /* The light purple color from the text */
+}
+
+.description {
+    color: #d1d1d1;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    margin-bottom: 40px;
+    max-width: 450px;
+}
+
+/* Buttons */
+.cta-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.btn-primary {
+    background-color: #a389d4;
+    color: white;
+    border: none;
+    font-size: 20px;
+    padding: 6px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: white;
+    border: 1px solid #444;
+    font-size: 20px;
+    padding: 6px 25px;
+    border-radius: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Image Section */
+.hero-image {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.bus-img {
+    max-width: 110%; /* Makes the image pop out slightly like the design */
+    height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 968px) {
+    .hero {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 20px;
+    }
+    .nav-links { display: none; }
+    .description { margin: 0 auto 40px; }
+    .cta-buttons { justify-content: center; }
+}
