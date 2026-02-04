@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRAIVEX</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .booking-container {
+            max-width: 800px;
+            margin: 50px auto;
+            background: rgba(255, 255, 255, 0.05);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid rgba(163, 137, 212, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .input-group label {
+            font-size: 0.8rem;
+            color: #a389d4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        input, select {
+            background: #1e1b29;
+            border: 1px solid #444;
+            padding: 12px;
+            border-radius: 8px;
+            color: white;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #a389d4;
+        }
+
+        .full-width {
+            grid-column: span 2;
+        }
+
+        .confirm-btn {
+            width: 100%;
+            margin-top: 30px;
+            padding: 15px;
+            background: #a389d4;
+            border: none;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .confirm-btn:hover {
+            transform: translateY(-2px);
+            background: #b6a0e0;
+        }
+
+        .back-link {
+            color: #b5b5b5;
+            text-decoration: none;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <nav class="navbar">
+            <div class="logo"><span class="icon">🎟️</span> TRAIVEX</div>
+            <a href="index.html" class="more-btn" style="text-decoration: none; text-align: center;">Back Home</a>
+        </nav>
+    </header>
+
+    <div class="booking-container">
+        <a href="index.html" class="back-link">← Return to Home </a>
+        <h2> Reserve Your Ticket </h2>
+        <p style="color: #b5b5b5; font-size: 0.9rem;">Fill in the details below to secure your seat instantly.</p>
+
+        <form class="form-grid">
+            <div class="input-group">
+                <label> From </label>
+                <input type="text" placeholder="Departure City">
+            </div>
+            <div class="input-group">
+                <label>To</label>
+                <input type="text" placeholder="Destination City">
+            </div>
+            <div class="input-group">
+                <label>Date</label>
+                <input type="date">
+            </div>
+            <div class="input-group">
+                <label>Bus Type </label>
+                <select>
+                    <option>Sleeper (AC)</option>
+                    <option>Semi-Sleeper (AC)</option>
+                    <option>Luxury Coach</option>
+                    <option>Standard</option>
+                </select>
+            </div>
+            <div class="input-group full-width">
+                <label>Full Name</label>
+                <input type="text" placeholder="Enter your name">
+            </div>
+            <div class="input-group">
+                <label>Phone Number</label>
+                <input type="tel" placeholder="+91 9999999999">
+            </div>
+            <div class="input-group">
+                <label>Seat Preference</label>
+                <select>
+                    <option>Window</option>
+                    <option>Aisle</option>
+                    <option>Any Available</option>
+                </select>
+            </div>
+
+            <button type="submit" class="confirm-btn full-width">Confirm Booking</button>
+        </form>
+    </div>
+
+</body>
+</html>
